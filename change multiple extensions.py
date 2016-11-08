@@ -1,7 +1,10 @@
 import os
-
+import platform
 
 print("Welcome to renamer")
+print("i notice that you are running",platform.system())
+
+
 #the path to the files (the folder)
 directory = input("please enter the path to the files , or leave it empty if the files exists in the same directory as this file :\n")
 #NOTE::lower the extension so that it won't be a problem in comaprision which is also lowered
@@ -25,8 +28,12 @@ if len(directory) > 1 :
             if file[1].lower() in current_extension:
                 #print the file name before and after and transfer them to a string concatenated with the path
                 print(current_extension, " file founded")
-                newName = directory+"\\"+file[0] + "." + new_extension
-                strFile = directory+"\\"+strFile
+                if(platform.system() in "Linux"):
+                    newName = directory + "/" + file[0] + "." + new_extension
+                    strFile = directory + "/" + strFile
+                else:
+                    newName = directory+"\\"+file[0] + "." + new_extension
+                    strFile = directory+"\\"+strFile
                 print("old name is ", strFile, end=">>")
                 print("new name is ", newName)
                 #rename it
